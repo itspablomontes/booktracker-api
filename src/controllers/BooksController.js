@@ -9,7 +9,7 @@ let books = [
 
 export const BooksController = {
     listBooks(req, res){
-        res.writeHead(200, {"content-type": "application.json"})
+        res.writeHead(200, {"content-type": "application/json"})
         res.end(JSON.stringify(books))
     }
 }
