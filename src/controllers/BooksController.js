@@ -12,4 +12,15 @@ export const BooksController = {
         const books = database.select("books")
         return res.end(JSON.stringify(books))
     },
+    getBookById(req, res){
+        const { id } = req.params
+        const book = database.selectItem("books", id)
+        if(book){
+            res.writeHead(200, {"content-type": "application/json"})
+            res.end(JSON.stringify(book))
+        } else{
+            res.writeHead(404, {"content-type": "text/plain"})
+            res.end("Book not found!")
+        }
+    }
 }

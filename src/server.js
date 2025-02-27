@@ -11,10 +11,13 @@ const server = http.createServer(async (req, res) => {
     console.log(`Method: ${req.method} | Endpoint: ${req.url}`)
 
     const route = routes.find((routeObj) => (
-        routeObj.endpoint === url && routeObj.method === method
+        routeObj.endpoint.test(url) && routeObj.method === method
     ))
 
     if(route){
+        const routeParams = req.url.match(route.endpoint)
+        const params = routeParams.groups
+        req.params = params
         route.handler(req, res)
     }else{
         res.writeHead(400, {"content-type": "text/plain"})
