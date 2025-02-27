@@ -34,6 +34,17 @@ export const BooksController = {
         database.insert("books", newBook)
         return res.writeHead(201, {"content-type": "application/json"}).end(JSON.stringify(newBook))
     },
+    updateBook(req, res){
+        const { id } = req.params
+        const {title, author} = req.body
+        const updatedbook = {
+            id,
+            title,
+            author
+        }
+            database.update("books", id, updatedbook)
+            res.writeHead(204).end()
+    },
     deleteBook(req,res){
         const { id } = req.params
 

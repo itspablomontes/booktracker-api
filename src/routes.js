@@ -19,6 +19,11 @@ export const routes = [
     },
     {
         endpoint: buildRoutePath("/books/:id"),
+        method: "PUT", 
+        handler: BooksController.updateBook
+    },    
+    {
+        endpoint: buildRoutePath("/books/:id"),
         method: "DELETE", 
         handler: BooksController.deleteBook
     }    
