@@ -1,15 +1,15 @@
+import { Database } from "../database.js"
+import { randomUUID } from "node:crypto"
+import { buildRoutePath } from "../utils/buildRoutePath.js"
 
-let books = [
-    {
-        id: 1,
-        title: "The Fellowship of The Ring",
-        author: "J.R.R. Tolkien",
-    }
-]
+
+const database = new Database()
+
 
 export const BooksController = {
     listBooks(req, res){
         res.writeHead(200, {"content-type": "application/json"})
-        res.end(JSON.stringify(books))
-    }
+        const books = database.select("books")
+        return res.end(JSON.stringify(books))
+    },
 }
