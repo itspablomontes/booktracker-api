@@ -16,5 +16,10 @@ export const routes = [
         endpoint: buildRoutePath("/books"),
         method: "POST",
         handler: BooksController.insertBook
-    },    
+    },
+    {
+        endpoint: buildRoutePath("/books/:id"),
+        method: "DELETE", 
+        handler: BooksController.deleteBook
+    }    
 ]

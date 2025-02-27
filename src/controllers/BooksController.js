@@ -33,5 +33,15 @@ export const BooksController = {
         }
         database.insert("books", newBook)
         return res.writeHead(201, {"content-type": "application/json"}).end(JSON.stringify(newBook))
+    },
+    deleteBook(req,res){
+        const { id } = req.params
+
+        const deletedBook = database.delete("books", id)
+        if(deletedBook){
+            res.writeHead(204).end()
+        } else{
+            res.writeHead(404, {"content-type": "text/plain"}).end("Book not found!")
+        }
     }
 }
