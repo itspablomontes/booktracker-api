@@ -11,5 +11,10 @@ export const routes = [
         endpoint: buildRoutePath("/books"),
         method: "GET",
         handler: BooksController.listBooks
-    },  
+    },
+    {
+        endpoint: buildRoutePath("/books"),
+        method: "POST",
+        handler: BooksController.insertBook
+    },    
 ]

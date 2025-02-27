@@ -22,5 +22,16 @@ export const BooksController = {
             res.writeHead(404, {"content-type": "text/plain"})
             res.end("Book not found!")
         }
+    },
+    insertBook(req, res){
+        const {title, author} = req.body
+
+        const newBook = {
+            id: randomUUID(),
+            title,
+            author,
+        }
+        database.insert("books", newBook)
+        return res.writeHead(201, {"content-type": "application/json"}).end(JSON.stringify(newBook))
     }
 }
