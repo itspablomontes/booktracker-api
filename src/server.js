@@ -1,14 +1,17 @@
 import http from "node:http"
-import url from "node:url"
 import { routes } from "./routes.js"
-
+import {json} from "./middlewares/json.js"
 
 const PORT = 3000
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
+    const {url, method} = req
+    await json(req, res)
+
     console.log(`Method: ${req.method} | Endpoint: ${req.url}`)
+
     const route = routes.find((routeObj) => (
-        routeObj.endpoint === req.url && routeObj.method === req.method
+        routeObj.endpoint === url && routeObj.method === method
     ))
 
     if(route){
@@ -18,8 +21,6 @@ const server = http.createServer((req, res) => {
         res.end(`Cannot ${req.method} ${req.url}`)
     }
 })
-
-
 
 server.listen(PORT, () =>{
     console.log(`Server running on http://localhost:${PORT} 🛠️`)
