@@ -26,5 +26,10 @@ export const routes = [
         endpoint: buildRoutePath("/books/:id"),
         method: "DELETE", 
         handler: BooksController.deleteBook
-    }    
+    },    
+    {
+        endpoint: buildRoutePath("/books/:id"),
+        method: "PATCH", 
+        handler: BooksController.updateBookField
+    }  
 ]

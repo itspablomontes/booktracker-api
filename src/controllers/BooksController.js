@@ -45,6 +45,16 @@ export const BooksController = {
             database.update("books", id, updatedbook)
             res.writeHead(204).end()
     },
+    updateBookField(req, res){
+        const { id } = req.params
+        const data = req.body
+        const keys = Object.keys(data)
+        const field = keys[0]
+        if(keys){
+            database.updateField("books", id, field, data[field])
+            res.writeHead(204).end()
+        }         
+    },
     deleteBook(req,res){
         const { id } = req.params
 
